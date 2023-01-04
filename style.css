@@ -1,0 +1,16 @@
+body{
+    display:flex;
+    font-family: Arial, Helvetica, sans-serif;
+    justify-content: center;
+}
+.container{
+    display: flex;
+    flex-direction: column;
+    border:2px solid red;
+}
+.display{
+    border:2px solid green;
+}
+[class*="button-row"]{
+    display: flex;
+}
