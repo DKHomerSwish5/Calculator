@@ -9,6 +9,8 @@ body{
     border:2px solid red;
 }
 .display{
+    display:flex;
+    justify-content: flex-end;
     border:2px solid green;
 }
 [class*="button-row"]{
