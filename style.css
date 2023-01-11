@@ -3,16 +3,48 @@ body{
     font-family: Arial, Helvetica, sans-serif;
     justify-content: center;
 }
+button{
+    width:87.5px;
+    height:65px;
+}
+.equal,.clear{
+    width:175px;
+}
 .container{
     display: flex;
     flex-direction: column;
-    border:2px solid red;
+    width:350px;
+    height:425px;
+    border:1px solid red;
 }
-.display{
+.display2{
     display:flex;
     justify-content: flex-end;
+    align-items: center;
+    font-size: 60px;
+    width:350px;
+    height: 60px;
     border:2px solid green;
+}
+.display1{
+    display:flex;
+    justify-content: flex-end;
+    align-items: center;
+    font-size:40px;
+    width: 350px;
+    height:40px;
+    border:2px solid orange;
+}
+.display-container{
+    display:flex;
+    width: 350px;
+    height: 100px;
+    flex-direction: column;
+    border:2px solid blue;
 }
 [class*="button-row"]{
     display: flex;
+    width:350px;
+    height:65px;
+    border:1px solid yellowgreen;
 }
