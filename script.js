@@ -15,7 +15,7 @@ let operatorSign='';
 number.forEach((num)=>{num.addEventListener('click',()=> displayBottom.textContent+=num.textContent)});
 operator.forEach((sign)=>{sign.addEventListener('click',()=>updateDisplay(displayVal=displayBottom.textContent, operatorSign=sign.textContent))});
 solve.addEventListener('click',()=>operate(operatorSign, val1, displayVal=displayBottom.textContent));
-
+clear.addEventListener('click',()=>clearDisplay());
 function updateDisplay(value, operator){
     if(oldOper==''){
         val1 = value;
@@ -34,6 +34,15 @@ function updateDisplay(value, operator){
     }
     return
 }
+function clearDisplay(){
+    val1 = '';
+    val2 = '';
+    val3 = '';
+    displayBottom.textContent = '';
+    displayTop.textContent = '';
+    return
+
+}
 function add(x,y){
     displayTop.textContent = val3 = Number(x)+Number(y);
     val1 = val3;
@@ -41,16 +50,22 @@ function add(x,y){
     return
 }
 function subtract(x,y){
-    displayTop.textContent = x+'-'+y
-    return displayBottom.textContent = displayVal = Number(x)-Number(y)
+    displayTop.textContent = val3 = Number(x)-Number(y);
+    val1 = val3;
+    displayBottom.textContent = '';
+    return
 }
 function multiply(x,y){
-    displayTop.textContent = x+'x'+y
-    return displayBottom.textContent = displayVal = Number(x)*Number(y)
+    displayTop.textContent = val3 = Number(x)*Number(y);
+    val1 = val3;
+    displayBottom.textContent = '';
+    return
 }
 function divide(x,y){
-    displayTop.textContent = x+'/'+y
-    return displayBottom.textContent = displayVal = Number(x)/Number(y)
+    displayTop.textContent = val3 = Number(x)/Number(y);
+    val1 = val3;
+    displayBottom.textContent = '';
+    return
 }
 function operate(operator, x, y){
     operator=='+'? add(x,y):
