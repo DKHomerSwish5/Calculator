@@ -4,6 +4,7 @@ let number = document.querySelectorAll('.number');
 let operator = document.querySelectorAll('.operator');
 let solve = document.querySelector('.equal');
 let clear = document.querySelector('.clear');
+let sign = document.querySelector('.sign');
 let operatorCheck;
 let displayVal = '';
 let val1;
@@ -16,6 +17,7 @@ number.forEach((num)=>{num.addEventListener('click',()=> displayBottom.textConte
 operator.forEach((sign)=>{sign.addEventListener('click',()=>updateDisplay(displayVal=displayBottom.textContent, operatorSign=sign.textContent))});
 solve.addEventListener('click',()=>operate(operatorSign, val1, displayVal=displayBottom.textContent));
 clear.addEventListener('click',()=>clearDisplay());
+sign.addEventListener('click',()=>signPosNeg(displayBottom.textContent));
 function updateDisplay(value, operator){
     if(oldOper==''){
         val1 = value;
@@ -40,31 +42,48 @@ function clearDisplay(){
     val3 = '';
     displayBottom.textContent = '';
     displayTop.textContent = '';
+    oldOper = '';
+    newOper = '';
+    operatorSign = '';
     return
-
+}
+function signPosNeg(value){
+    value*=-1;
+    displayBottom.textContent = value;
+    return
 }
 function add(x,y){
-    displayTop.textContent = val3 = Number(x)+Number(y);
+    displayBottom.textContent = val3 = Math.round((Number(x)+Number(y))*100)/100;
     val1 = val3;
-    displayBottom.textContent = '';
+    displayTop.textContent = x +' + '+ y;
+    oldOper = '';
     return
 }
 function subtract(x,y){
-    displayTop.textContent = val3 = Number(x)-Number(y);
+    displayBottom.textContent = val3 = Math.round((Number(x)-Number(y))*100)/100;
     val1 = val3;
-    displayBottom.textContent = '';
+    displayTop.textContent = x +' - '+ y;
+    oldOper = '';
     return
 }
 function multiply(x,y){
-    displayTop.textContent = val3 = Number(x)*Number(y);
+    displayBottom.textContent = val3 = Math.round((Number(x)*Number(y))*100)/100;
     val1 = val3;
-    displayBottom.textContent = '';
+    displayTop.textContent = x +' x '+ y;
+    oldOper = '';
     return
 }
 function divide(x,y){
-    displayTop.textContent = val3 = Number(x)/Number(y);
-    val1 = val3;
-    displayBottom.textContent = '';
+    if(y==0){
+        alert("YOU CAN'T DIVIDE BY ZERO, PLEASE ENTER A NON ZERO VALUE");
+        displayBottom.textContent = '';
+    }
+    else{
+        displayBottom.textContent = val3 = Math.round((Number(x)/Number(y))*100)/100;
+        val1 = val3;
+        displayTop.textContent = x +' / '+ y;
+        oldOper = '';
+    }
     return
 }
 function operate(operator, x, y){
