@@ -5,6 +5,7 @@ let operator = document.querySelectorAll('.operator');
 let solve = document.querySelector('.equal');
 let clear = document.querySelector('.clear');
 let sign = document.querySelector('.sign');
+let backspace = document.querySelector('.backspace');
 let operatorCheck;
 let displayVal = '';
 let val1;
@@ -13,11 +14,25 @@ let val3;
 let oldOper='';
 let newOper='';
 let operatorSign='';
-number.forEach((num)=>{num.addEventListener('click',()=> displayBottom.textContent+=num.textContent)});
+let decimal = false;
+number.forEach((num)=>{num.addEventListener('click',()=>numberInput(num))});
 operator.forEach((sign)=>{sign.addEventListener('click',()=>updateDisplay(displayVal=displayBottom.textContent, operatorSign=sign.textContent))});
 solve.addEventListener('click',()=>operate(operatorSign, val1, displayVal=displayBottom.textContent));
 clear.addEventListener('click',()=>clearDisplay());
 sign.addEventListener('click',()=>signPosNeg(displayBottom.textContent));
+backspace.addEventListener('click',()=>displayBottom.textContent=displayBottom.textContent.slice(0,-1));
+function numberInput(num){
+    if(num.textContent=='.'&& decimal==false){
+        decimal = true;
+        displayBottom.textContent+=num.textContent;
+    }
+    else if(num.textContent=='.' && decimal==true){
+    }
+    else{
+        displayBottom.textContent+=num.textContent;
+    }
+    return
+}
 function updateDisplay(value, operator){
     if(oldOper==''){
         val1 = value;
@@ -25,6 +40,7 @@ function updateDisplay(value, operator){
         console.log(oldOper);
         displayTop.textContent = val1 + oldOper;
         displayBottom.textContent ='';
+        decimal = false;
     }
     else{
         val2 = value;
@@ -33,6 +49,10 @@ function updateDisplay(value, operator){
         console.log(val1);
         oldOper = newOper;
         newOper='';
+        val1 = val3;
+        displayTop.textContent = val1 + oldOper;
+        displayBottom.textContent ='';
+        decimal = false;
     }
     return
 }
@@ -45,6 +65,7 @@ function clearDisplay(){
     oldOper = '';
     newOper = '';
     operatorSign = '';
+    decimal = false;
     return
 }
 function signPosNeg(value){

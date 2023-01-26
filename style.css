@@ -6,15 +6,29 @@ body{
 button{
     width:87.5px;
     height:65px;
+    margin: 1px;
 }
-.equal,.clear{
+.number, .sign, .equal{
+    background-color: white;
+}
+.equal{
     width:175px;
+}
+.operator{
+    background-color: silver;
+}
+.clear,.backspace{
+    width: 87.5px;
+    background-color: orange;
 }
 .container{
     display: flex;
     flex-direction: column;
-    width:350px;
-    height:425px;
+    justify-content: center;
+    align-items: center;
+    background-color: grey;
+    width: 390px;
+    height:465px;
     border:1px solid red;
 }
 .display2{
@@ -40,6 +54,8 @@ button{
     width: 350px;
     height: 100px;
     flex-direction: column;
+    background-color: white;
+    margin-bottom: 10px;
     border:2px solid blue;
 }
 [class*="button-row"]{
