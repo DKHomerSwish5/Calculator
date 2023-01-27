@@ -1,35 +1,46 @@
 body{
     display:flex;
+    height: 100vh;
+    width: 100vw;
+    background-color: aquamarine;
     font-family: Arial, Helvetica, sans-serif;
     justify-content: center;
+    align-items: center;
 }
 button{
+    display:inline-block;
     width:87.5px;
     height:65px;
-    margin: 1px;
+    border-radius: 15px;
 }
-.number, .sign, .equal{
+button:hover{
+    font-size: x-large;
+    font-weight: 900;
+}
+.number, .sign{
+    background-image: linear-gradient(135deg, white, rgb(227, 227, 227));
+}
+.equal button{
+    width:175px;
     background-color: white;
 }
-.equal{
-    width:175px;
-}
 .operator{
-    background-color: silver;
+    background-image: linear-gradient(135deg, lightgrey, rgb(158, 158, 158));
 }
-.clear,.backspace{
+.clear button,.backspace button{
     width: 87.5px;
-    background-color: orange;
+    background-image: linear-gradient(135deg, rgb(250, 185, 64), rgb(239, 156, 0));
 }
+
 .container{
+    border-radius: 30px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: grey;
-    width: 390px;
-    height:465px;
-    border:1px solid red;
+    background-image: linear-gradient(135deg, rgb(62, 62, 62), rgb(51, 50, 50));
+    width: 420px;
+    height:520px;
 }
 .display2{
     display:flex;
@@ -38,7 +49,9 @@ button{
     font-size: 60px;
     width:350px;
     height: 60px;
-    border:2px solid green;
+    margin-left: -10px;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 .display1{
     display:flex;
@@ -47,20 +60,21 @@ button{
     font-size:40px;
     width: 350px;
     height:40px;
-    border:2px solid orange;
+    margin-left: -10px;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 .display-container{
     display:flex;
     width: 350px;
     height: 100px;
+    border-radius:20px;
     flex-direction: column;
     background-color: white;
-    margin-bottom: 10px;
-    border:2px solid blue;
+    margin-bottom: 20px;
 }
 [class*="button-row"]{
     display: flex;
     width:350px;
     height:65px;
-    border:1px solid yellowgreen;
 }

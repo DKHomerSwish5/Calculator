@@ -15,6 +15,9 @@ let oldOper='';
 let newOper='';
 let operatorSign='';
 let decimal = false;
+let operSolveCheck = false;
+let solved = false;
+let zeroPress = false;
 number.forEach((num)=>{num.addEventListener('click',()=>numberInput(num))});
 operator.forEach((sign)=>{sign.addEventListener('click',()=>updateDisplay(displayVal=displayBottom.textContent, operatorSign=sign.textContent))});
 solve.addEventListener('click',()=>operate(operatorSign, val1, displayVal=displayBottom.textContent));
@@ -23,13 +26,31 @@ sign.addEventListener('click',()=>signPosNeg(displayBottom.textContent));
 backspace.addEventListener('click',()=>displayBottom.textContent=displayBottom.textContent.slice(0,-1));
 function numberInput(num){
     if(num.textContent=='.'&& decimal==false){
+        if(solved==true){
+            displayBottom.textContent = '';
+            solved = false;
+        }
         decimal = true;
         displayBottom.textContent+=num.textContent;
+        operSolveCheck = false;
+        solved = false;
     }
     else if(num.textContent=='.' && decimal==true){
     }
     else{
+        if(solved==true){
+            displayBottom.textContent = '';
+            solved = false;
+        }
+        if(zeroPress==true){
+            return
+        }
+        if(displayBottom.textContent=='0'){
+            zeroPress = true;
+        }
         displayBottom.textContent+=num.textContent;
+        operSolveCheck = false;
+        solved = false;
     }
     return
 }
@@ -41,6 +62,7 @@ function updateDisplay(value, operator){
         displayTop.textContent = val1 + oldOper;
         displayBottom.textContent ='';
         decimal = false;
+        zeroPress = false;
     }
     else{
         val2 = value;
@@ -53,6 +75,7 @@ function updateDisplay(value, operator){
         displayTop.textContent = val1 + oldOper;
         displayBottom.textContent ='';
         decimal = false;
+        zeroPress = false;
     }
     return
 }
@@ -66,6 +89,8 @@ function clearDisplay(){
     newOper = '';
     operatorSign = '';
     decimal = false;
+    operSolveCheck = false;
+    zeroPress = false;
     return
 }
 function signPosNeg(value){
@@ -74,24 +99,48 @@ function signPosNeg(value){
     return
 }
 function add(x,y){
-    displayBottom.textContent = val3 = Math.round((Number(x)+Number(y))*100)/100;
-    val1 = val3;
-    displayTop.textContent = x +' + '+ y;
-    oldOper = '';
+    if(operSolveCheck==false){
+        operSolveCheck = true;
+        solved = true;
+        displayBottom.textContent = val3 = Math.round((Number(x)+Number(y))*100)/100;
+        val1 = val3;
+        displayTop.textContent = x +' + '+ y;
+        oldOper = '';
+        zeroPress = false;
+    }
+    else{
+        return
+    }
     return
 }
 function subtract(x,y){
-    displayBottom.textContent = val3 = Math.round((Number(x)-Number(y))*100)/100;
-    val1 = val3;
-    displayTop.textContent = x +' - '+ y;
-    oldOper = '';
+    if(operSolveCheck==false){
+        operSolveCheck = true;
+        solved = true;
+        displayBottom.textContent = val3 = Math.round((Number(x)-Number(y))*100)/100;
+        val1 = val3;
+        displayTop.textContent = x +' - '+ y;
+        oldOper = '';
+        zeroPress = false
+    }
+    else{
+        return
+    }
     return
 }
 function multiply(x,y){
-    displayBottom.textContent = val3 = Math.round((Number(x)*Number(y))*100)/100;
-    val1 = val3;
-    displayTop.textContent = x +' x '+ y;
-    oldOper = '';
+    if(operSolveCheck==false){
+        operSolveCheck = true;
+        solved = true;
+        displayBottom.textContent = val3 = Math.round((Number(x)*Number(y))*100)/100;
+        val1 = val3;
+        displayTop.textContent = x +' x '+ y;
+        oldOper = '';
+        zeroPress = false;
+    }
+    else{
+        return
+    }
     return
 }
 function divide(x,y){
@@ -100,10 +149,18 @@ function divide(x,y){
         displayBottom.textContent = '';
     }
     else{
-        displayBottom.textContent = val3 = Math.round((Number(x)/Number(y))*100)/100;
-        val1 = val3;
-        displayTop.textContent = x +' / '+ y;
-        oldOper = '';
+        if(operSolveCheck==false){
+            operSolveCheck = true;
+            solved = true;
+            displayBottom.textContent = val3 = Math.round((Number(x)/Number(y))*100)/100;
+            val1 = val3;
+            displayTop.textContent = x +' / '+ y;
+            oldOper = '';
+            zeroPress = false;
+        }
+        else{
+            return
+        }
     }
     return
 }
