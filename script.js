@@ -37,6 +37,9 @@ function numberInput(num){
     }
     else if(num.textContent=='.' && decimal==true){
     }
+    else if(displayBottom.textContent>=100000000){
+        displayBottom.textContent = Number.parseFloat(displayBottom.textContent).toExponential(1);
+    }
     else{
         if(solved==true){
             displayBottom.textContent = '';
@@ -65,6 +68,9 @@ function updateDisplay(value, operator){
         zeroPress = false;
     }
     else{
+        if(value==''){
+            return
+        }
         val2 = value;
         newOper = operator;
         operate(oldOper,val1, val2);
